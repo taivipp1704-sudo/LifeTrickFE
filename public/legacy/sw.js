@@ -1,0 +1,4 @@
+const SHELL='tk-shell-v1';
+self.addEventListener('install',e=>{e.waitUntil(caches.open(SHELL).then(c=>c.addAll(['./','index.html','style.css','app.js','data.js','stage.js','assets/icon.svg','manifest.webmanifest'])).then(()=>self.skipWaiting()));});
+self.addEventListener('activate',e=>{e.waitUntil(self.clients.claim());});
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==location.origin)return;e.respondWith((async()=>{try{const r=await fetch(e.request);if(r.ok)return r;const cached=await caches.match(e.request);return cached||r;}catch{const cached=await caches.match(e.request);if(cached)return cached;if(e.request.mode==='navigate')return await caches.match('index.html');return new Response('Offline resource unavailable',{status:503});}})());});

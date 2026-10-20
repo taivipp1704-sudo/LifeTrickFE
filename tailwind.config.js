@@ -1,0 +1,1 @@
+export default {content:['./index.html','./src/**/*.{js,jsx}'],theme:{extend:{colors:{forest:'var(--accent)',paper:'var(--ground)',ink:'var(--text)',surface:'var(--surface)'},fontFamily:{sans:['Be Vietnam Pro','sans-serif']}}},plugins:[]};
